@@ -1,7 +1,6 @@
 import 'package:core_app/utils/extensions.dart';
 import 'package:core_app/utils/navigation_extention.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,7 +23,6 @@ class CommonScaffold extends StatelessWidget {
   final EdgeInsetsGeometry bodyPadding;
   final bool showDrawer;
   final bool? show;
-  final AdvancedDrawerController? controller;
   final Widget? titleWidget;
   final bool showLabel;
   final double? titleSpacing;
@@ -43,7 +41,6 @@ class CommonScaffold extends StatelessWidget {
     this.bottomNavigationBar,
     this.floatingActButton,
     this.showDrawer = false,
-    this.controller,
     this.bodyPadding = const EdgeInsets.all(0),
     this.show,
   });

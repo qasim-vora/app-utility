@@ -3,19 +3,16 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:core_app/core/common/view_models/map_current_loc_model.dart';
 import 'package:core_app/l10n/localization.dart';
 import 'package:core_app/utils/extensions.dart';
 import 'package:crypto/crypto.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -230,28 +227,6 @@ class CommonMethods {
     }
   }
 
-  static Future<CurrentLocModel?> getCurrentAddress() async {
-    CurrentLocModel? model;
-    try {
-      Position loc = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-      String address = "";
-      List<Placemark> placeMarks =
-          await placemarkFromCoordinates(loc.latitude, loc.longitude);
-
-      if (placeMarks[0].subLocality == "" || placeMarks[0].locality == "") {
-        address = placeMarks[0].name!;
-      } else {
-        address = "${placeMarks[0].subLocality}, ${placeMarks[0].locality}";
-      }
-      model = CurrentLocModel(
-          current: LatLng(loc.latitude, loc.longitude), address: address);
-    } catch (e) {
-      logger.e("EXCEPTION ===${e.toString()}");
-    }
-    return model;
-  }
 
   static Future<bool> askLocationPermission({
     String? whichPermission,
@@ -546,36 +521,36 @@ class CommonMethods {
     return digest.toString();
   }
 
-  static Future<void> signInWithApple() async {
-    final rawNonce = generateNonce();
-    final nonce = sha256ofString(rawNonce);
-
-    // Request credential for the currently signed in Apple account.
-    // final res = await SignInWithApple.getAppleIDCredential(
-    //   scopes: [
-    //     AppleIDAuthorizationScopes.email,
-    //     AppleIDAuthorizationScopes.fullName,
-    //   ],
-    //    // intent://callback?${PARAMETERS FROM CALLBACK BODY}#Intent;package=YOUR.PACKAGE.IDENTIFIER;scheme=signinwithapple;end
-    //     webAuthenticationOptions: WebAuthenticationOptions(
-    //         clientId: "com.taxi.driver1-service",
-    //        redirectUri: Uri.parse("https://driver-8841b.firebaseapp.com/__/auth/handler"))
-    //
-    //   // nonce: nonce,
-    // );
-
-    final appleProvider = AppleAuthProvider();
-
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithProvider(appleProvider);
-      print("userCredential --- ${userCredential.toString()}");
-
-      String? authCode = userCredential.additionalUserInfo?.authorizationCode;
-      print("AUTH CODE -- $authCode");
-    } on FirebaseAuthException catch (error) {
-      print("error.code");
-      print(error.code);
-    }
-  }
+  // static Future<void> signInWithApple() async {
+  //   final rawNonce = generateNonce();
+  //   final nonce = sha256ofString(rawNonce);
+  //
+  //   // Request credential for the currently signed in Apple account.
+  //   // final res = await SignInWithApple.getAppleIDCredential(
+  //   //   scopes: [
+  //   //     AppleIDAuthorizationScopes.email,
+  //   //     AppleIDAuthorizationScopes.fullName,
+  //   //   ],
+  //   //    // intent://callback?${PARAMETERS FROM CALLBACK BODY}#Intent;package=YOUR.PACKAGE.IDENTIFIER;scheme=signinwithapple;end
+  //   //     webAuthenticationOptions: WebAuthenticationOptions(
+  //   //         clientId: "com.taxi.driver1-service",
+  //   //        redirectUri: Uri.parse("https://driver-8841b.firebaseapp.com/__/auth/handler"))
+  //   //
+  //   //   // nonce: nonce,
+  //   // );
+  //
+  //   final appleProvider = AppleAuthProvider();
+  //
+  //   try {
+  //     UserCredential userCredential =
+  //         await FirebaseAuth.instance.signInWithProvider(appleProvider);
+  //     print("userCredential --- ${userCredential.toString()}");
+  //
+  //     String? authCode = userCredential.additionalUserInfo?.authorizationCode;
+  //     print("AUTH CODE -- $authCode");
+  //   } on FirebaseAuthException catch (error) {
+  //     print("error.code");
+  //     print(error.code);
+  //   }
+  // }
 }
