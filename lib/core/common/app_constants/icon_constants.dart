@@ -1,0 +1,36 @@
+class IconConstants {
+  static const String menuIcon = "assets/svg/menuIcon.svg";
+  static const String backIcon = "assets/svg/backIcon.svg";
+  static const String download = "assets/svg/download.svg";
+  static const String sign = "assets/svg/sign.svg";
+  static const String expand = "assets/svg/expand.svg";
+  static const String time = "assets/svg/time.svg";
+  static const String rating = "assets/svg/rating.svg";
+  static const String enable = "assets/svg/enable.svg";
+  static const String disable = "assets/svg/disable.svg";
+  static const String call = "assets/svg/call.svg";
+  static const String edit = "assets/svg/edit.svg";
+  static const String bank = "assets/svg/bank.svg";
+  static const String location = "assets/svg/location.svg";
+  static const String wallet = "assets/svg/wallet.svg";
+  static const String history = "assets/svg/history.svg";
+  static const String camera = "assets/svg/camera.svg";
+  static const String email = "assets/svg/email.svg";
+  static const String user = "assets/svg/user.svg";
+  static const String visa = "assets/svg/visa.svg";
+  static const String cardSecurity = "assets/svg/cardsecurity.svg";
+  static const String cardCard = "assets/svg/credit-card.svg";
+  static const String cvv = "assets/svg/cvv.svg";
+  static const String calendar = "assets/svg/calendar.svg";
+  static const String inviteFrnd = "assets/svg/inviteFrnd.svg";
+  static const String gift = "assets/svg/gift.svg";
+  static const String whatsapp = "assets/svg/whatsapp.svg";
+  static const String instagram = "assets/svg/insta.svg";
+  static const String copy = "assets/svg/copy.svg";
+  static const String messenger = "assets/svg/messenger.svg";
+  static const String complaint = "assets/svg/complaint.svg";
+  static const String chat = "assets/svg/chat.svg";
+  static const String person = "assets/svg/contact.svg";
+  static const String delete = "assets/svg/delete.svg";
+  static const String gallery = "assets/svg/gallery.svg";
+}
